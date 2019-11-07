@@ -4,9 +4,11 @@
     "type": "library",
     "require": {
         "php": ">=5.3.9",
-        "ext-redis": "^4.3.0",
         "symfony/http-kernel": "^2.7",
         "symfony/framework-bundle": "^2.7"
+    },
+    "suggest": {
+        "ext-redis": "If you'd like to use phpredis."
     },
     "license": "MIT",
     "authors": [
