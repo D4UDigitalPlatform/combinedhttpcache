@@ -37,7 +37,7 @@ class RedisClient
         } else {
             $this->connection = new Redis();
 
-            if (false === $this->connection->connect('redis')) {
+            if (false === $this->connection->connect($redisDNS)) {
                 throw new RuntimeException(sprintf('Cannot connect on Redis with %s', $redisDNS));
             }
         }
