@@ -381,16 +381,16 @@ class BaseStore implements StoreInterface
         #    return 'md' . hash('sha256', $request->getUri(). uniqid());
 	#}   
 	 //url necessitant le calcul de utm
-        $parametersGet = $request->query->all();
+        /*$parametersGet = $request->query->all();
         if(!empty($parametersGet['utm_source'])) {
             $out = preg_replace("#\?.*#", '', $request->getUri());
             $out .= '?utm_source='.$parametersGet['utm_source'];
 
             return 'md' . hash('sha256', $out);
-        }
+        }*/
 
         //suppression des paramètres pour les  urls qui ne nécessitent pas de recalcul
-        if (!preg_match('#(/api/|/_fragment|codevin|b2b|category|lcdv(4|6|16)|deep_link|hash_id|dclid)#', $request->getUri())) {
+        if (!preg_match('#(/api/|/_fragment|codevin|b2b|category|lcdv(4|6|16)|deep_link|hash_id|dclid|utm_source|utm_content|utm_medium|utm_campaign)#', $request->getUri())) {
             return 'md' . hash('sha256', preg_replace("#\?.*#", '', $request->getUri()));
         }
 
