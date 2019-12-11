@@ -388,6 +388,24 @@ class BaseStore implements StoreInterface
 
             return 'md' . hash('sha256', $out);
         }
+		
+		if(!empty($parametersGet['utm_content'])) {
+            $out = preg_replace("#\?.*#", '', $request->getUri());
+            $out .= '?utm_content='.$parametersGet['utm_content'];
+            return 'md' . hash('sha256', $out);
+        }
+		
+		if(!empty($parametersGet['utm_medium'])) {
+            $out = preg_replace("#\?.*#", '', $request->getUri());
+            $out .= '?utm_medium='.$parametersGet['utm_medium'];
+            return 'md' . hash('sha256', $out);
+        }
+		
+		if(!empty($parametersGet['utm_campaign'])) {
+            $out = preg_replace("#\?.*#", '', $request->getUri());
+            $out .= '?utm_campaign='.$parametersGet['utm_campaign'];
+            return 'md' . hash('sha256', $out);
+        }
 
         //suppression des paramètres pour les  urls qui ne nécessitent pas de recalcul
         if (!preg_match('#(/api/|/_fragment|codevin|b2b|category|lcdv(4|6|16)|deep_link|hash_id)#', $request->getUri())) {
