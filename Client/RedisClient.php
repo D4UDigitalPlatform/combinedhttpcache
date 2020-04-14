@@ -83,7 +83,8 @@ class RedisClient
      */
     public function set($key, $value)
     {
-        return $this->connection->set($key, $value);
+        //return $this->connection->set($key, $value);
+        return $this->connection->setex($key, 43200, $value);
     }
 
     /**
