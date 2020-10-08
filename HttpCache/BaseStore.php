@@ -394,7 +394,9 @@ class BaseStore implements StoreInterface
         } */
 
         //suppression des paramètres pour les  urls qui ne nécessitent pas de recalcul
-        if (!preg_match('#(/api/|/_fragment|codevin|b2b|category|lcdv(4|6|16)|deep_link|hash_id|utm_source|utm_content|utm_medium|utm_campaign|utm_term)#', $request->getUri())) {
+        //[NDPA-5901] annuler la prise en compte des paramètres utm, dynamisation géré par le javascript
+        //if (!preg_match('#(/api/|/_fragment|codevin|b2b|category|lcdv(4|6|16)|deep_link|hash_id|utm_source|utm_content|utm_medium|utm_campaign|utm_term)#', $request->getUri())) {
+        if (!preg_match('#(/api/|/_fragment|codevin|b2b|category|lcdv(4|6|16)|deep_link|hash_id)#', $request->getUri())) {
             return 'md' . hash('sha256', preg_replace("#\?.*#", '', $request->getUri()));
         }
 
